@@ -5,12 +5,894 @@
     <link>https://miguelhisojo.github.io/</link>
       <atom:link href="https://miguelhisojo.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>MIGUEL ANGEL HISOJO</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2020 16:26:58 +0200</lastBuildDate>
     <image>
-      <url>https://miguelhisojo.github.io/images/icon_hu2e8d6bfdce6269f4eaa6c6bb0928cc5f_7630_512x512_fill_lanczos_center_2.png</url>
+      <url>https://miguelhisojo.github.io/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_512x512_fill_lanczos_center_2.png</url>
       <title>MIGUEL ANGEL HISOJO</title>
       <link>https://miguelhisojo.github.io/</link>
     </image>
+    
+    <item>
+      <title>Inside a Wireless Transmission</title>
+      <link>https://miguelhisojo.github.io/project/inside-a-wireless-transmission/</link>
+      <pubDate>Wed, 12 Aug 2020 16:26:58 +0200</pubDate>
+      <guid>https://miguelhisojo.github.io/project/inside-a-wireless-transmission/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;featured.png&#34; alt=&#34;wireless.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;how-your-wireless-speaker-works&#34;&gt;How your wireless speaker works?&lt;/h1&gt;
+&lt;h2 id=&#34;an-fsk-simulation&#34;&gt;An FSK simulation&lt;/h2&gt;
+&lt;p&gt;Mobile phones, internet access, and to listening music on the radio are normal activities for most of us. When any of those activities take place, we impose a data signal wave over a carrier signal wave, generally of higher frequency. This process is called modulation.&lt;/p&gt;
+&lt;p&gt;Digital Modulation provides more information capacity, high data security, quicker system availability with great quality communication.&lt;/p&gt;
+&lt;p&gt;Frequency Shift Keying (FSK) is one of the most common modulation techniques. FSK modulates a signal so it can be transmitted wirelessly. Bluetooth, uses Gaussian FSK modulation, a slightly different version of FSK. This notebook aims to provide an overview of how data transmission works over FSK.&lt;/p&gt;
+&lt;h1 id=&#34;system-description&#34;&gt;System description.&lt;/h1&gt;
+&lt;h2 id=&#34;transmitter&#34;&gt;Transmitter&lt;/h2&gt;
+&lt;p&gt;FSK modulation uses two frequencies to represent binary values of 1 and 0, so our input data d will be converted to these frequencies. Our transmitter (tx) will simply create two distinct frequencies based on a data value, by using a voltage-controlled oscillator (VCO).&lt;/p&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-fsk-transmitter&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/tx_fsk_hud1407d304ac3eeff418321e6aa039019_20095_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;FSK Transmitter&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/tx_fsk_hud1407d304ac3eeff418321e6aa039019_20095_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;816&#34; height=&#34;283&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    FSK Transmitter
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The &lt;em&gt;transmitted signal&lt;/em&gt; &lt;strong&gt;s(t)&lt;/strong&gt; is defined as&lt;/p&gt;
+&lt;p&gt;$$ s(t) = A \cos(2 \pi  \omega (t) ) $$&lt;/p&gt;
+&lt;p&gt;Where &lt;strong&gt;A&lt;/strong&gt; is the signal amplitude and $\omega (t)$ is the output of the voltage-controlled oscillator (VCO) defined as:&lt;/p&gt;
+&lt;p&gt;$$   f_c + m(t)  = \begin{cases}
+1  &amp;amp;  f_c - f_{dev} &amp;amp; \\&lt;br&gt;
+0  &amp;amp;  f_c + f_{dev}
+\end{cases}
+$$&lt;/p&gt;
+&lt;p&gt;where $ f_{dev}$ is the frequency deviation, so, our output signal is represented as,&lt;/p&gt;
+&lt;p&gt;$$
+s(t) = A \cos(2 \pi  (f_c  + m(t)) * t )
+$$&lt;/p&gt;
+&lt;h1 id=&#34;lets-code&#34;&gt;Let&amp;rsquo;s code.&lt;/h1&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# Import the libraries necessary for our simulation
+import numpy as np
+import pylab as pl
+from numpy.random import sample
+import scipy.signal as signal
+import scipy.signal.signaltools as sigtool
+pl.rcParams[&#39;figure.figsize&#39;] = [15, 5]    # Standard size for all plots to improve visualization.
+pl.rcParams[&#39;figure.dpi&#39;] = 300
+#pl.figure(figsize=(30, 10), dpi= 80)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#SIMULATED VALUES
+Fc = 1000       #carrier frequency of 1kHz
+Fbit = 50       #bitrate of data
+Fdev = 500      #frequency deviation
+N = 64          #Size of the array of bits that we will transmit
+A = 1           #tx ignal amplitude
+Fs = 10000      #sampling frequency
+A_n = 0.1       #noise peak amplitude
+N_pbits = 10    #number of bits to print in plots
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#generate some random data for testing
+d = np.random.randint(0,1+1,N)
+
+print(&#39;d:  \n&#39;,d)
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;d:  
+ [0 0 1 1 1 1 1 0 1 0 1 0 0 1 0 0 1 1 0 1 1 1 1 1 1 1 0 0 0 0 0 1 1 0 0 1 1
+ 0 1 1 1 0 1 0 1 1 1 0 1 0 0 0 1 1 1 0 1 0 1 1 1 0 0 0]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The voltage-controlled oscillator(VCO) converts the bit stream to a sine wave, with a frequency-dependent value on whether the bit is a 1 or 0. The bit stream is then extended to match the sampling frequency.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;t = np.arange(0,float(N)/float(Fbit),1/float(Fs), dtype=np.float)
+
+#extend the d to account for the bitrate and convert 0/1 to frequency
+m = np.zeros(0).astype(float)
+zero=int(Fc+Fdev)
+one=int(Fc-Fdev)
+fsbit=int(Fs/Fbit)
+
+for bit in d:
+   if bit == 0:
+       m=np.hstack((m,np.multiply(np.ones(int(Fs/Fbit)),Fc+Fdev)))
+   else:
+       m=np.hstack((m,np.multiply(np.ones(int(Fs/Fbit)),Fc-Fdev)))
+print(len(m))
+        
+#calculate the output of the VCO
+y=np.zeros(0)
+y=A * np.cos(2*np.pi*np.multiply(m,t))
+
+pl.plot(t[0:int(Fs*N_pbits/Fbit )],y[0:int(Fs*N_pbits/Fbit)])
+pl.xlabel(&#39;Time (s)&#39;)
+pl.ylabel(&#39;Amplitude (V)&#39;)
+pl.title(&#39;Amplitude of carrier vs time&#39;)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;12800
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-amplitude-of-carrier-vs-time&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_6_2_hu9a5f7628b6edba1e053dfcede6216648_590858_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Amplitude of carrier vs time&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_6_2_hu9a5f7628b6edba1e053dfcede6216648_590858_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3766&#34; height=&#34;1385&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Amplitude of carrier vs time
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Frequency measurements of the FSK signal are usually stated in terms of “shift” and
+center frequency. The shift is the frequency difference between the mark and space
+frequencies. Shifts are usually in the range of 50 to 1000 Hertz. The nominal center
+frequency is halfway between the mark and space frequencies.&lt;/p&gt;
+&lt;p&gt;Frequency Shift Property of the Fourier Transform:&lt;/p&gt;
+&lt;p&gt;$$
+\mathscr F [x(t) \cos (2\pi f_c t)] = \frac{1}{2} X (f-f_c) + \frac{1}{2} X (f+f_c)
+$$&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#visualize data in time and frequency domain
+def visualize_data(y):
+    N_FFT = float(len(y))                             
+    f = np.arange(0,Fs/2,Fs/N_FFT) 
+    w = np.hanning(len(y))                           
+    y_f = np.fft.fft(np.multiply(y,w))
+    y_f = 10*np.log10(np.abs(y_f[0:int(N_FFT/2)]/N_FFT))
+    return y_f,w ,f,N_FFT
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;y_f,w,f,N_FFT=visualize_data(y)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pl.plot(t[0:int(Fs*N_pbits/Fbit)],m[0:int(Fs*N_pbits/Fbit)])
+pl.xlabel(&#39;Time (s)&#39;)
+pl.ylabel(&#39;Frequency (Hz)&#39;)
+pl.title(&#39;Original VCO output versus time&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-original-vco-output-versus-time&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_10_1_huae0cf49a9d740d065a043df239199d88_75249_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Original VCO output versus time&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_10_1_huae0cf49a9d740d065a043df239199d88_75249_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3744&#34; height=&#34;1385&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Original VCO output versus time
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pl.plot(f[0:int((Fc+Fdev*2)*N_FFT/Fs)],y_f[0:int((Fc+Fdev*2)*N_FFT/Fs)])
+pl.xlabel(&#39;Frequency (Hz)&#39;)
+pl.ylabel(&#39;Amplitude (dB)&#39;)
+pl.title(&#39;Spectrum&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-signal-spectrum&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_11_1_hub440c18a394144878b79c73b377cbd11_301000_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Signal spectrum&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_11_1_hub440c18a394144878b79c73b377cbd11_301000_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3726&#34; height=&#34;1385&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Signal spectrum
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;the-channel&#34;&gt;The channel&lt;/h2&gt;
+&lt;p&gt;The signal acquires noise when passing through the channel. The thermal noise $n(t)$ is assumed to be complex additive white Gaussian (AWGN) with zero mean and power spectral density $\frac{N_0}{2}$.&lt;/p&gt;
+&lt;p&gt;The received signal can be expressed as:
+$$
+r(t)= s(t)+n(t)
+$$&lt;/p&gt;
+&lt;p&gt;so,&lt;/p&gt;
+&lt;p&gt;$$
+y(t)= A \cos(2 \pi  (f_c  + m(t)) * t ) +n(t)
+$$&lt;/p&gt;
+&lt;p&gt;If the noise becomes too strong, or if the amplitude of the signal becomes too weak, the data cannot be demodulated.&lt;/p&gt;
+&lt;p&gt;In our simulation, we will set the noise amplitude of 0.1 which creates a signal-to-noise ratio of $~14dB$. Notice the noise in the time domain corrupting the signal in the following plots.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#create some noise
+noise = (np.random.randn(len(y))+1)*A_n
+snr = 10*np.log10(np.mean(np.square(y)) / np.mean(np.square(noise)))
+print(&amp;quot;SNR = %fdB&amp;quot; % snr)
+y=np.add(y,noise)
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;    SNR = 13.961869dB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;y_f,w,f,N_FFT=visualize_data(y)
+
+pl.plot(t[0:int(Fs*N_pbits/Fbit )],y[0:int(Fs*N_pbits/Fbit)])
+pl.xlabel(&#39;Time (s)&#39;)
+pl.ylabel(&#39;Amplitude (V)&#39;)
+pl.title(&#39;Amplitude of carrier vs time&#39;)
+print(int(Fs*N_pbits/Fbit ))
+print(int(Fs*N_pbits/Fbit))
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;    2000
+    2000
+
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure &gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_15_1_hu2369cf561e83921874f140cbf41eae34_664981_2000x2000_fit_lanczos_2.png&#34; &gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_15_1_hu2369cf561e83921874f140cbf41eae34_664981_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3739&#34; height=&#34;1385&#34;&gt;
+&lt;/a&gt;
+
+
+
+&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pl.plot(f[0:int((Fc+Fdev*2)*N_FFT/Fs)],y_f[0:int((Fc+Fdev*2)*N_FFT/Fs)])
+pl.xlabel(&#39;Frequency (Hz)&#39;)
+pl.ylabel(&#39;Amplitude (dB)&#39;)
+##pl.title(&#39;Spectrum of the received signal&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-amplitude-db&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_16_1_hufac686eac529db590ccb33989eeadd4a_347936_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Amplitude (dB)&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_16_1_hufac686eac529db590ccb33989eeadd4a_347936_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3726&#34; height=&#34;1325&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Amplitude (dB)
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;the-receiver&#34;&gt;The receiver&lt;/h2&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-a-receiver-architecture&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/rx_fsk_huf64ced1534b2c5fc2a87c6241a7fcadf_29258_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;A receiver architecture&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/rx_fsk_huf64ced1534b2c5fc2a87c6241a7fcadf_29258_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;816&#34; height=&#34;349&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    A receiver architecture
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;Our receiver will take concepts from &lt;em&gt;analog FM&lt;/em&gt;, which can be demodulated by converting the &lt;strong&gt;frequency changes to amplitude changes.&lt;/strong&gt;
+Typically, FSK demodulation utilizes an analog differentiator in order to separate the data signal from the carrier frequency, followed by an envelope detector. This procedure is simple and low-power consuming.&lt;/p&gt;
+&lt;p&gt;$$
+\frac{dy}{dt} = -A 2\pi \left ( f + m(t) + t * \frac{d m(t)}{dt} \right) \sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+$$&lt;/p&gt;
+&lt;p&gt;Combining the amplitudes in one term and taking into account that the term $\frac{d m(t)}{dt} = 0$ due to the constant phase change we have:&lt;/p&gt;
+&lt;p&gt;$$
+\frac{dy}{dt} = A 2\pi \left ( f + m(t)  \right) \sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+$$&lt;/p&gt;
+&lt;p&gt;In our simulation, we can ignore the phase shift, since it is constant. Nevertheless, in real life, a clock recovery or bit synchronization scheme must be applied. The differentiator is simple and is just a discrete differentiation function, it can be implemented as:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;y_diff = np.diff(y,1)
+print(y)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;    [ 1.15418648  0.56043178 -0.2061984  ... -0.76277215 -0.0358485
+      0.64900518]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The envelope detector separates the high-frequency carrier from the low-frequency digital data modulated onto the amplitude, this is done by using a Hilbert transform.
+After the envelope detection, the signal is low-pass filtered using a 100 tap FIR filter with a cutoff frequency of $2*bitrate$.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;######################################################
+# Envelope detector and low-pass filter
+######################################################
+y_env = np.abs(sigtool.hilbert(y_diff))
+h=signal.firwin( numtaps=100, cutoff=Fbit*2, nyq=Fs/2)
+y_low_filt=signal.lfilter( h, 1.0, y_env)
+
+#data after adding noise
+N_FFT = float(len(y_low_filt))
+f = np.arange(0,Fs/2,Fs/N_FFT)
+w = np.hanning(len(y_low_filt))
+y_f = np.fft.fft(np.multiply(y_low_filt,w))
+y_f = 10*np.log10(np.abs(y_f[0:int(N_FFT/2)]/N_FFT))
+
+
+pl.plot(t[0:int(Fs*N_pbits/Fbit)],m[0:int(Fs*N_pbits/Fbit)])
+pl.xlabel(&#39;Time (s)&#39;)
+pl.ylabel(&#39;Frequency (Hz)&#39;)
+pl.title(&#39;Original VCO output vs. time&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-original-vco-output-vs-time&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_20_1_hue703479703461df58f4a4a7ce5c4487e_73617_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Original VCO output vs. time&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_20_1_hue703479703461df58f4a4a7ce5c4487e_73617_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3744&#34; height=&#34;1385&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Original VCO output vs. time
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pl.plot(t[0:int(Fs*N_pbits/Fbit)],np.abs(y[0:int(Fs*N_pbits/Fbit)]))
+pl.plot(t[0:int(Fs*N_pbits/Fbit)],y_low_filt[0:int(Fs*N_pbits/Fbit)],&#39;r&#39;,linewidth=3.0)
+pl.xlabel(&#39;Time (s)&#39;)
+pl.ylabel(&#39;Amplitude (V)&#39;)
+pl.title(&#39;Filter signal and unfiltered signal vs. time&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-filter-signal-and-unfiltered-signal-vs-time&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/FSK_21_1.png&#34; data-caption=&#34;Filter signal and unfiltered signal vs. time&#34;&gt;
+
+
+  &lt;img src=&#34;https://miguelhisojo.github.io/FSK_21_1.png&#34; alt=&#34;&#34;  &gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Filter signal and unfiltered signal vs. time
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;pl.plot(f[0:int((Fc+Fdev*2)*N_FFT/Fs)],y_f[0:int((Fc+Fdev*2)*N_FFT/Fs)])
+pl.xlabel(&#39;Frequency (Hz)&#39;)
+pl.ylabel(&#39;Amplitude (dB)&#39;)
+pl.title(&#39;Spectrum&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-sectrum&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_22_1_hue09299c3cdbe5a4fe7533275f8371d5c_233814_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Sectrum&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_22_1_hue09299c3cdbe5a4fe7533275f8371d5c_233814_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3753&#34; height=&#34;1385&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Sectrum
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;p&gt;The slicer takes the mean of the entire filtered signal, and uses this as a decision threshold, to decide if a bit is a 1 or a 0.
+The decision is done at the center of the bit period. The result is saved to an array and compared to the original, to find bit errors.
+The bit error percentage is printed to the console.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#calculate the mean of the signal
+mean = np.mean(y_low_filt)
+#if the mean of the bit period is higher than the mean, the data is a 0
+sampled_signal = y_low_filt[int(Fs/Fbit/2):len(y_low_filt):int(Fs/Fbit)]
+
+print(sampled_signal)
+pl.plot(sampled_signal)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;[0.94154175 0.92515726 0.35223853 0.33979885 0.35294071 0.36287615
+ 0.34675628 0.90095976 0.35453665 0.92090498 0.34720447 0.91611558
+ 0.94528336 0.34417705 0.90435061 0.91620578 0.34844842 0.3388747
+ 0.94404786 0.34364565 0.35304868 0.356202   0.35102639 0.34859071
+ 0.33627503 0.3383037  0.93701699 0.92527765 0.91127889 0.92546922
+ 0.90017475 0.34158569 0.34268534 0.92516404 0.91248606 0.33776427
+ 0.3454749  0.93246055 0.34503893 0.34917072 0.35666379 0.90326687
+ 0.35272848 0.92576273 0.35310379 0.34613621 0.38067857 0.88376517
+ 0.35971779 0.88856201 0.93363287 0.89404895 0.34008713 0.34691357
+ 0.33626758 0.90701975 0.33288698 0.91293492 0.34244479 0.36333365
+ 0.33606437 0.95159041 0.922426   0.93333146]
+&lt;/code&gt;&lt;/pre&gt;
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure id=&#34;figure-received-sequence&#34;&gt;
+
+
+  &lt;a data-fancybox=&#34;&#34; href=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_24_2_hu1835ddf08f3aeca25973d7fb184aace6_236670_2000x2000_fit_lanczos_2.png&#34; data-caption=&#34;Received sequence.&#34;&gt;
+
+
+  &lt;img data-src=&#34;https://miguelhisojo.github.io/project/inside-a-wireless-transmission/FSK_24_2_hu1835ddf08f3aeca25973d7fb184aace6_236670_2000x2000_fit_lanczos_2.png&#34; class=&#34;lazyload&#34; alt=&#34;&#34; width=&#34;3646&#34; height=&#34;1267&#34;&gt;
+&lt;/a&gt;
+
+
+  
+  
+  &lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; class=&#34;numbered&#34;&gt;
+    Received sequence.
+  &lt;/figcaption&gt;
+
+
+&lt;/figure&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;rx_data=[]
+[rx_data.append(0) if bit &amp;gt; mean else rx_data.append(1) for bit in sampled_signal]
+        
+bit_error=0
+for i in range(0,len(d)):
+    if rx_data[i] != d[i]:
+        bit_error+=1
+               
+print (&amp;quot;bit errors = %d&amp;quot; % bit_error)
+print (&amp;quot;bit error percent = %4.2f%%&amp;quot; % (float(bit_error)/float(N)*100) )
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;bit errors = 0
+bit error percent = 0.00%
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;FSK is a digital modulation technique to increase the frequency characteristics of the input binary signal. By FSK modulation technique we can achieve error-free communication in a few digital applications.
+Nevertheless, FSK has finite data rate and consumes more bandwidth can be overcome by the QAM, which is known as quadrature amplitude modulation. It is the combination of amplitude modulation and phase modulation.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>WEB SCRAPING</title>
+      <link>https://miguelhisojo.github.io/project/web-scraping/</link>
+      <pubDate>Tue, 11 Aug 2020 21:22:33 +0200</pubDate>
+      <guid>https://miguelhisojo.github.io/project/web-scraping/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;scraping.png&#34; alt=&#34;scraping.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;how-to-see-the-big-picture&#34;&gt;How to see the big picture?&lt;/h1&gt;
+&lt;p&gt;Web scraping, the answer to get ahead in a world producing billions of data points in seconds.&lt;/p&gt;
+&lt;h2 id=&#34;what-is-it&#34;&gt;What is it?&lt;/h2&gt;
+&lt;p&gt;According to Wikipedia&amp;hellip;&lt;/p&gt;
+&lt;blockquote&gt;
+Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. Web scraping software may access the World Wide Web directly using the Hypertext Transfer Protocol or through a web browser. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented using a bot or web crawler. It is a form of copying, in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.
+&lt;/blockquote&gt;
+&lt;h1 id=&#34;in-short&#34;&gt;In short:&lt;/h1&gt;
+&lt;p&gt;Web scraping, allows you to parse HTML code from websites and save it in a spreadsheet or database giving you data insights.&lt;/p&gt;
+&lt;h1 id=&#34;why-is-it-needed-&#34;&gt;Why is it needed &amp;hellip;&lt;/h1&gt;
+&lt;p&gt;Everybody has to take decisions, and making informed decisions is key for any purpose you have. Web scraping allows you to make decisions and understand how other actors in your domain are getting ahead.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;For businesses, this allows them to get the data, information, statistics, or knowledge of the latest trends and understand their competitors.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For analysts to allow them to get pricing intelligence, competitor analysis, market research, or sentiment analysis, you need to scrape actual data from the web to arrive at a suitable strategy.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;who-needs-it&#34;&gt;Who needs it&lt;/h1&gt;
+&lt;p&gt;You need this, If you work as:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;entrepreneur&lt;/li&gt;
+&lt;li&gt;recruiter&lt;/li&gt;
+&lt;li&gt;marketer&lt;/li&gt;
+&lt;li&gt;researcher&lt;/li&gt;
+&lt;li&gt;analyst&lt;/li&gt;
+&lt;li&gt;journalist&lt;/li&gt;
+&lt;li&gt;data scientist&lt;/li&gt;
+&lt;li&gt;medical professional&lt;/li&gt;
+&lt;li&gt;politician&lt;/li&gt;
+&lt;li&gt;lawyer&lt;/li&gt;
+&lt;li&gt;accountant&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;lets-code&#34;&gt;Let&amp;rsquo;s code.&lt;/h1&gt;
+&lt;p&gt;For web scraping, we will need to install some python libraries like Beautiful Soup, requests and lxml&lt;/p&gt;
+&lt;p&gt;We need to pull data from websites, for this, we will use a Python library called 
+&lt;a href=&#34;https://www.crummy.com/software/BeautifulSoup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beaitiful Soup&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;bs.png&#34; alt=&#34;bs.png&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;install-the-libraries&#34;&gt;Install the libraries&lt;/h1&gt;
+&lt;h2 id=&#34;beautiful-soup&#34;&gt;Beautiful Soup&lt;/h2&gt;
+&lt;p&gt;To install 
+&lt;a href=&#34;https://www.crummy.com/software/BeautifulSoup/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Beaitiful Soup&lt;/a&gt;, only type in your terminal&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pip install beautifulsoup4&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This will allow you to get the latest version of the library. Beautiful Soup sits on top of popular Python parsers like lxml and html5lib, allowing you to try out different parsing strategies or trade speed for flexibility.&lt;/p&gt;
+&lt;h2 id=&#34;requests&#34;&gt;Requests&lt;/h2&gt;
+&lt;p&gt;The 
+&lt;a href=&#34;https://requests.readthedocs.io/en/master/library&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Requests&lt;/a&gt; library is the standard to make an HTTP request in python. Install the library typing in your terminal:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pip install requests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;lxml&#34;&gt;lxml&lt;/h2&gt;
+&lt;p&gt;We will needa “parser” for interpreting the HTML page.  The 
+&lt;a href=&#34;https://lxml.de/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;lxml&lt;/a&gt; library combines the speed and XML feature completeness of libxml2 and libxslt libraries with the simplicity of a native Python API, mostly compatible but superior to the well-known ElementTree API. Install the library typing in your terminal:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;pip install lxml&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;center-font-size30-examplefont-center&#34;&gt;&lt;center&gt; &lt;font size=&#34;30&#34;&gt; Example&lt;/font&gt; &lt;/center&gt;&lt;/h1&gt;
+&lt;h2 id=&#34;center-extracting-article-information-from-a-blog-center&#34;&gt;&lt;center&gt; Extracting article information from a blog. &lt;/center&gt;&lt;/h2&gt;
+&lt;p&gt;This example will show you how web scraping is valuable for journalists and business owners. Allowing them to get data from different sources for market analysis.&lt;/p&gt;
+&lt;h3 id=&#34;importing-our-libraries&#34;&gt;Importing our libraries&lt;/h3&gt;
+&lt;p&gt;We need to import our Beautiful Soup (bs4) and requests libraries as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from bs4 import BeautifulSoup
+import requests
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;now-we-are-going-to-import-an-article-from-the-entrepreneur-blog-on-the-topic-millennials&#34;&gt;Now we are going to import an article from the entrepreneur blog on the topic &lt;em&gt;millennials&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;For this, we are going to use the method &lt;strong&gt;GET&lt;/strong&gt; from our &lt;em&gt;requests&lt;/em&gt; library. The GET method indicates that you’re trying to get or retrieve data from a specified resource.&lt;/p&gt;
+&lt;p&gt;The HTTP request will send us a response 200, this code means the request was valid.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;response = requests.get(&#39;https://www.entrepreneur.com/topic/millennials&#39;)
+print(response)
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;Response [200]&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;we-want-to-look-at-the-code&#34;&gt;We want to look at the code&lt;/h3&gt;
+&lt;p&gt;Now, we want to make sure that we actually extract the HTML code from the request we made. Besides, we want to see the actual text result of the HTML page, you can read the &lt;em&gt;.text&lt;/em&gt; property of this object.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;source=response.text 
+#print(source) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;now-we-can-make-the-soup&#34;&gt;Now, we can make the Soup&lt;/h3&gt;
+&lt;p&gt;We will make a variable called &lt;em&gt;soup&lt;/em&gt; that will call the Beautiful soup constructor, this will receive a string. In our case, these will be our source variable, and our &lt;em&gt;lxml&lt;/em&gt; parser.&lt;/p&gt;
+&lt;p&gt;Note, that there are different parsers that we can use for this, but the difference in performance is not that big, feel free to try them all.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;soup = BeautifulSoup(source, &#39;lxml&#39;) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&#34;extracting-information-about-the-article&#34;&gt;Extracting information about the article&lt;/h3&gt;
+&lt;p&gt;Our &lt;em&gt;soup&lt;/em&gt; variable contains all the HTML code of the blog, however, we want to extract only what is interesting to us, like the title of the article and the summary.&lt;/p&gt;
+&lt;p&gt;To find out what we need to extract, we can go to our web page and open the &lt;em&gt;developer tools&lt;/em&gt; as follows:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;right-click&lt;/em&gt; on the title of an article&lt;/li&gt;
+&lt;li&gt;on the menu, click on &lt;em&gt;inspect&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;en_block.png&#34; alt=&#34;en_block.png&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Once we have localized the HTML tags that contain the information necessary for us, we can extract it with the find function. The information we need is:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;The title&lt;/li&gt;
+&lt;li&gt;Summary of the article.&lt;/li&gt;
+&lt;li&gt;Link&lt;/li&gt;
+&lt;li&gt;Author&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The title is contained inside an &lt;em&gt;a tag&lt;/em&gt;, as well as the &lt;em&gt;link&lt;/em&gt; URL, the summary is inside &lt;em&gt;div&lt;/em&gt; with class deck and the author inside a &lt;em&gt;span&lt;/em&gt; element.&lt;/p&gt;
+&lt;p&gt;Now, it is important to understand where these elements are wrapped on, so we can see that they are wrapped inside a &lt;strong&gt;div&lt;/strong&gt; with class &lt;strong&gt;block&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;First, we will begin by extracting the wrapping element. For doing this, we will use the find()  attribute from bs4, that receives the element &lt;strong&gt;div&lt;/strong&gt; and the class.&lt;/p&gt;
+&lt;p&gt;The word &lt;strong&gt;class&lt;/strong&gt; is a reserved word in Python, so this function uses **class_** to differentiate between these two.&lt;/p&gt;
+&lt;p&gt;Now we can extract a block of code and display it in our terminal, for this we will use the &lt;strong&gt;prettify()&lt;/strong&gt; function. A pretty-printed block will allow you to see the indentation of the HTML code, so you can actually notice the tags and elements you need to access.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;article = soup.find(&#39;div&#39;,class_=&#39;block&#39;)
+
+print(article.prettify())
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&amp;quot;block&amp;quot;&amp;gt;
+ &amp;lt;a class=&amp;quot;kicker ga-click&amp;quot; data-ga-action=&amp;quot;kicker&amp;quot; data-ga-category=&amp;quot;topic-millennials-playlist-latest-feature&amp;quot; data-ga-label=&amp;quot;playlist.1&amp;quot; href=&amp;quot;/topic/millennials&amp;quot;&amp;gt;
+  Millennials
+ &amp;lt;/a&amp;gt;
+ &amp;lt;h3&amp;gt;
+  &amp;lt;a class=&amp;quot;ga-click&amp;quot; data-ga-action=&amp;quot;headline&amp;quot; data-ga-category=&amp;quot;topic-millennials-playlist-latest-feature&amp;quot; data-ga-label=&amp;quot;playlist.1&amp;quot; href=&amp;quot;/article/348092&amp;quot;&amp;gt;
+   7 Interesting Financial Facts About Millennials
+  &amp;lt;/a&amp;gt;
+ &amp;lt;/h3&amp;gt;
+ &amp;lt;div class=&amp;quot;deck&amp;quot;&amp;gt;
+  The millennial generation has its virtues and shortcomings, but more often than not, millennials are considered to be financially indisciplined.
+ &amp;lt;/div&amp;gt;
+ &amp;lt;div class=&amp;quot;byline&amp;quot;&amp;gt;
+  &amp;lt;a class=&amp;quot;ga-click&amp;quot; data-ga-action=&amp;quot;authorname&amp;quot; data-ga-category=&amp;quot;topic-millennials-playlist-latest-feature&amp;quot; data-ga-label=&amp;quot;playlist.1&amp;quot; href=&amp;quot;/author/portia-antonia-alexis&amp;quot;&amp;gt;
+   &amp;lt;span class=&amp;quot;name&amp;quot;&amp;gt;
+    Portia Antonia Alexis
+   &amp;lt;/span&amp;gt;
+  &amp;lt;/a&amp;gt;
+  &amp;lt;span class=&amp;quot;spacer&amp;quot;&amp;gt;
+   |
+  &amp;lt;/span&amp;gt;
+  &amp;lt;span class=&amp;quot;readtime&amp;quot;&amp;gt;
+   11 min read
+  &amp;lt;/span&amp;gt;
+ &amp;lt;/div&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;extracting-the-headline&#34;&gt;Extracting the headline&lt;/h2&gt;
+&lt;p&gt;In our previous line, we notice the title is inside an &lt;em&gt;$&amp;lt;$a$&amp;gt;$&lt;/em&gt; tag, which is inside an &lt;em&gt;$&amp;lt;$h3$&amp;gt;$&lt;/em&gt; element&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;h3&amp;gt;
+    &amp;lt;a href=&amp;quot;/article/348092&amp;quot;&amp;gt;7 Interesting Financial Facts About Millennials &amp;lt;/a&amp;gt; 
+&amp;lt;/h3&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can access the HTML elements, making reference to the object containing the block code, in this case, we called &lt;em&gt;article&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;for article in soup.find_all(&#39;div&#39;,class_=&#39;block&#39;):headline= article.h3.a.text
+print(headline)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&amp;lt;ipython-input-13-85011acff508&amp;gt; in &amp;lt;module&amp;gt;
+----&amp;gt; 1 for article in soup.find_all(&#39;div&#39;,class_=&#39;block&#39;):headline= article.h3.a.text
+      2 print(headline)
+
+
+AttributeError: &#39;NoneType&#39; object has no attribute &#39;a&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;extracting-the-summary&#34;&gt;Extracting the summary&lt;/h2&gt;
+&lt;p&gt;The same way, we can extrac the summary, contained inside a &lt;em&gt;$&amp;lt;$div$&amp;gt;$&lt;/em&gt; element with class name &lt;em&gt;deck&lt;/em&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;sumary = article.find(&#39;div&#39;,class_=&#39;deck&#39; ).text
+print(sumary)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;extracting-the-url&#34;&gt;Extracting the URL&lt;/h2&gt;
+&lt;p&gt;The URL is an attribute &lt;em&gt;href&lt;/em&gt; inside the title tag, we can access attributes by specifying it on brackets next to the element where it is contained as follows:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;link =  article.h3.a[&#39;href&#39;]
+link = f&#39;https://www.entrepreneur.com{link}&#39;
+print(link)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;center-font-size30-extract--all-the-articles-in-a-page-save-it-on-a-csv--fontcenter&#34;&gt;&lt;center&gt; &lt;font size=&#34;30&#34;&gt; Extract  all the articles in a page, save it on a CSV  &lt;/font&gt;&lt;/center&gt;&lt;/h1&gt;
+&lt;h2 id=&#34;the-find_all-method&#34;&gt;The find_all* method&lt;/h2&gt;
+&lt;p&gt;We want to get all articles, we’ll need to use the &lt;em&gt;find_all()&lt;/em&gt; method to extract all the tags with all the blocks containing an article.&lt;/p&gt;
+&lt;h2 id=&#34;we-need-exceptions&#34;&gt;We need exceptions&lt;/h2&gt;
+&lt;p&gt;Sometimes, a block might have a missing element, url, or a description. So we will use exceptions to pass when something goes wrong.&lt;/p&gt;
+&lt;p&gt;We will save every article inside a CSV file. Here is the full code of this example.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from bs4 import BeautifulSoup
+import requests
+import csv
+
+source = requests.get(&#39;https://www.entrepreneur.com/topic/millennials&#39;).text
+domain= &#39;https://www.entrepreneur.com/&#39;
+
+soup = BeautifulSoup(source, &#39;lxml&#39;) 
+
+with open(&#39;cms_file.csv&#39;,&#39;w&#39;) as csv_file:
+    csv_writer=csv.writer(csv_file)
+    csv_writer.writerow([&#39;headline&#39;,&#39;summary&#39;,&#39;link&#39;])
+
+    for article in soup.find_all(&#39;div&#39;,class_=&#39;block&#39;):
+        try:
+            headline= article.h3.a.text
+            #print(headline)
+
+            sumary = article.find(&#39;div&#39;,class_=&#39;deck&#39; ).text
+            #print(sumary)
+
+            link =  article.h3.a[&#39;href&#39;]
+            link = f&#39;https://www.entrepreneur.com{link}&#39;
+            #print(link)
+
+        except Exception as e:
+            pass    
+
+
+        csv_writer.writerow([headline,sumary,link ])
+
+
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h1 id=&#34;the-resulting-csv-file&#34;&gt;The resulting CSV file&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;CSV_FILE.png&#34; alt=&#34;CSV_FILE&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;now-try-it-on-financial-websites-or-investment-websites-and-use-pandas-to-get-the-most-of-your-data&#34;&gt;Now, try it on financial websites or investment websites, and use pandas to get the most of your data!&lt;/h2&gt;
+</description>
+    </item>
     
   </channel>
 </rss>

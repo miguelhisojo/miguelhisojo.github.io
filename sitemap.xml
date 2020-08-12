@@ -4,14 +4,67 @@
   
   <url>
     <loc>https://miguelhisojo.github.io/authors/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://miguelhisojo.github.io/categories/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/tag/data-science/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/project/inside-a-wireless-transmission/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://miguelhisojo.github.io/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/author/miguel-hisojo/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/project/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/tag/signal-processing/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/category/signal-processing/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/tags/</loc>
+    <lastmod>2020-08-12T16:26:58+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/category/data-science/</loc>
+    <lastmod>2020-08-11T21:22:33+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/tag/deep-learning/</loc>
+    <lastmod>2020-08-11T21:22:33+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://miguelhisojo.github.io/project/web-scraping/</loc>
+    <lastmod>2020-08-11T21:22:33+02:00</lastmod>
   </url>
   
   <url>
@@ -32,10 +85,6 @@
   
   <url>
     <loc>https://miguelhisojo.github.io/talk/</loc>
-  </url>
-  
-  <url>
-    <loc>https://miguelhisojo.github.io/tags/</loc>
   </url>
   
 </urlset>

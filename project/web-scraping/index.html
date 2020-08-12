@@ -1,0 +1,1122 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Miguel Angel Hisojo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Web scraping or data mining, one of the most important tools in data science. This allows you to get millions of data points everyday, to get insighs on markets, finance, business among many others.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://miguelhisojo.github.io/project/web-scraping/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://miguelhisojo.github.io/project/web-scraping/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="MIGUEL ANGEL HISOJO">
+  <meta property="og:url" content="https://miguelhisojo.github.io/project/web-scraping/">
+  <meta property="og:title" content="WEB SCRAPING | MIGUEL ANGEL HISOJO">
+  <meta property="og:description" content="Web scraping or data mining, one of the most important tools in data science. This allows you to get millions of data points everyday, to get insighs on markets, finance, business among many others."><meta property="og:image" content="https://miguelhisojo.github.io/project/web-scraping/featured.png">
+  <meta property="twitter:image" content="https://miguelhisojo.github.io/project/web-scraping/featured.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-08-11T21:22:33&#43;02:00">
+    
+    <meta property="article:modified_time" content="2020-08-11T21:22:33&#43;02:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://miguelhisojo.github.io/project/web-scraping/"
+  },
+  "headline": "WEB SCRAPING",
+  
+  "image": [
+    "https://miguelhisojo.github.io/project/web-scraping/featured.png"
+  ],
+  
+  "datePublished": "2020-08-11T21:22:33+02:00",
+  "dateModified": "2020-08-11T21:22:33+02:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Miguel Hisojo"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "MIGUEL ANGEL HISOJO",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://miguelhisojo.github.io/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Web scraping or data mining, one of the most important tools in data science. This allows you to get millions of data points everyday, to get insighs on markets, finance, business among many others."
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>WEB SCRAPING | MIGUEL ANGEL HISOJO</title>
+
+</head>
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">MIGUEL ANGEL HISOJO</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">MIGUEL ANGEL HISOJO</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Portfolio</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>WEB SCRAPING</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span >Miguel Hisojo</span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 11, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/data-science/">Data Science</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><img src="scraping.png" alt="scraping.png"></p>
+<h1 id="how-to-see-the-big-picture">How to see the big picture?</h1>
+<p>Web scraping, the answer to get ahead in a world producing billions of data points in seconds.</p>
+<h2 id="what-is-it">What is it?</h2>
+<p>According to Wikipedia&hellip;</p>
+<blockquote>
+Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. Web scraping software may access the World Wide Web directly using the Hypertext Transfer Protocol or through a web browser. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented using a bot or web crawler. It is a form of copying, in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.
+</blockquote>
+<h1 id="in-short">In short:</h1>
+<p>Web scraping, allows you to parse HTML code from websites and save it in a spreadsheet or database giving you data insights.</p>
+<h1 id="why-is-it-needed-">Why is it needed &hellip;</h1>
+<p>Everybody has to take decisions, and making informed decisions is key for any purpose you have. Web scraping allows you to make decisions and understand how other actors in your domain are getting ahead.</p>
+<ul>
+<li>
+<p>For businesses, this allows them to get the data, information, statistics, or knowledge of the latest trends and understand their competitors.</p>
+</li>
+<li>
+<p>For analysts to allow them to get pricing intelligence, competitor analysis, market research, or sentiment analysis, you need to scrape actual data from the web to arrive at a suitable strategy.</p>
+</li>
+</ul>
+<h1 id="who-needs-it">Who needs it</h1>
+<p>You need this, If you work as:</p>
+<ul>
+<li>entrepreneur</li>
+<li>recruiter</li>
+<li>marketer</li>
+<li>researcher</li>
+<li>analyst</li>
+<li>journalist</li>
+<li>data scientist</li>
+<li>medical professional</li>
+<li>politician</li>
+<li>lawyer</li>
+<li>accountant</li>
+</ul>
+<h1 id="lets-code">Let&rsquo;s code.</h1>
+<p>For web scraping, we will need to install some python libraries like Beautiful Soup, requests and lxml</p>
+<p>We need to pull data from websites, for this, we will use a Python library called 
+<a href="https://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="noopener">Beaitiful Soup</a></p>
+<p><img src="bs.png" alt="bs.png"></p>
+<h1 id="install-the-libraries">Install the libraries</h1>
+<h2 id="beautiful-soup">Beautiful Soup</h2>
+<p>To install 
+<a href="https://www.crummy.com/software/BeautifulSoup/" target="_blank" rel="noopener">Beaitiful Soup</a>, only type in your terminal</p>
+<ul>
+<li>pip install beautifulsoup4</li>
+</ul>
+<p>This will allow you to get the latest version of the library. Beautiful Soup sits on top of popular Python parsers like lxml and html5lib, allowing you to try out different parsing strategies or trade speed for flexibility.</p>
+<h2 id="requests">Requests</h2>
+<p>The 
+<a href="https://requests.readthedocs.io/en/master/library" target="_blank" rel="noopener">Requests</a> library is the standard to make an HTTP request in python. Install the library typing in your terminal:</p>
+<ul>
+<li>pip install requests</li>
+</ul>
+<h2 id="lxml">lxml</h2>
+<p>We will needa “parser” for interpreting the HTML page.  The 
+<a href="https://lxml.de/" target="_blank" rel="noopener">lxml</a> library combines the speed and XML feature completeness of libxml2 and libxslt libraries with the simplicity of a native Python API, mostly compatible but superior to the well-known ElementTree API. Install the library typing in your terminal:</p>
+<ul>
+<li>pip install lxml</li>
+</ul>
+<h1 id="center-font-size30-examplefont-center"><center> <font size="30"> Example</font> </center></h1>
+<h2 id="center-extracting-article-information-from-a-blog-center"><center> Extracting article information from a blog. </center></h2>
+<p>This example will show you how web scraping is valuable for journalists and business owners. Allowing them to get data from different sources for market analysis.</p>
+<h3 id="importing-our-libraries">Importing our libraries</h3>
+<p>We need to import our Beautiful Soup (bs4) and requests libraries as follows:</p>
+<pre><code class="language-python">from bs4 import BeautifulSoup
+import requests
+
+</code></pre>
+<h3 id="now-we-are-going-to-import-an-article-from-the-entrepreneur-blog-on-the-topic-millennials">Now we are going to import an article from the entrepreneur blog on the topic <em>millennials</em></h3>
+<p>For this, we are going to use the method <strong>GET</strong> from our <em>requests</em> library. The GET method indicates that you’re trying to get or retrieve data from a specified resource.</p>
+<p>The HTTP request will send us a response 200, this code means the request was valid.</p>
+<pre><code class="language-python">response = requests.get('https://www.entrepreneur.com/topic/millennials')
+print(response)
+
+</code></pre>
+<pre><code>&lt;Response [200]&gt;
+</code></pre>
+<h3 id="we-want-to-look-at-the-code">We want to look at the code</h3>
+<p>Now, we want to make sure that we actually extract the HTML code from the request we made. Besides, we want to see the actual text result of the HTML page, you can read the <em>.text</em> property of this object.</p>
+<pre><code class="language-python">source=response.text 
+#print(source) 
+</code></pre>
+<h3 id="now-we-can-make-the-soup">Now, we can make the Soup</h3>
+<p>We will make a variable called <em>soup</em> that will call the Beautiful soup constructor, this will receive a string. In our case, these will be our source variable, and our <em>lxml</em> parser.</p>
+<p>Note, that there are different parsers that we can use for this, but the difference in performance is not that big, feel free to try them all.</p>
+<pre><code class="language-python">soup = BeautifulSoup(source, 'lxml') 
+</code></pre>
+<h3 id="extracting-information-about-the-article">Extracting information about the article</h3>
+<p>Our <em>soup</em> variable contains all the HTML code of the blog, however, we want to extract only what is interesting to us, like the title of the article and the summary.</p>
+<p>To find out what we need to extract, we can go to our web page and open the <em>developer tools</em> as follows:</p>
+<ul>
+<li><em>right-click</em> on the title of an article</li>
+<li>on the menu, click on <em>inspect</em></li>
+</ul>
+<p><img src="en_block.png" alt="en_block.png"></p>
+<p>Once we have localized the HTML tags that contain the information necessary for us, we can extract it with the find function. The information we need is:</p>
+<ul>
+<li>The title</li>
+<li>Summary of the article.</li>
+<li>Link</li>
+<li>Author</li>
+</ul>
+<p>The title is contained inside an <em>a tag</em>, as well as the <em>link</em> URL, the summary is inside <em>div</em> with class deck and the author inside a <em>span</em> element.</p>
+<p>Now, it is important to understand where these elements are wrapped on, so we can see that they are wrapped inside a <strong>div</strong> with class <strong>block</strong></p>
+<p>First, we will begin by extracting the wrapping element. For doing this, we will use the find()  attribute from bs4, that receives the element <strong>div</strong> and the class.</p>
+<p>The word <strong>class</strong> is a reserved word in Python, so this function uses **class_** to differentiate between these two.</p>
+<p>Now we can extract a block of code and display it in our terminal, for this we will use the <strong>prettify()</strong> function. A pretty-printed block will allow you to see the indentation of the HTML code, so you can actually notice the tags and elements you need to access.</p>
+<pre><code class="language-python">article = soup.find('div',class_='block')
+
+print(article.prettify())
+
+</code></pre>
+<pre><code>&lt;div class=&quot;block&quot;&gt;
+ &lt;a class=&quot;kicker ga-click&quot; data-ga-action=&quot;kicker&quot; data-ga-category=&quot;topic-millennials-playlist-latest-feature&quot; data-ga-label=&quot;playlist.1&quot; href=&quot;/topic/millennials&quot;&gt;
+  Millennials
+ &lt;/a&gt;
+ &lt;h3&gt;
+  &lt;a class=&quot;ga-click&quot; data-ga-action=&quot;headline&quot; data-ga-category=&quot;topic-millennials-playlist-latest-feature&quot; data-ga-label=&quot;playlist.1&quot; href=&quot;/article/348092&quot;&gt;
+   7 Interesting Financial Facts About Millennials
+  &lt;/a&gt;
+ &lt;/h3&gt;
+ &lt;div class=&quot;deck&quot;&gt;
+  The millennial generation has its virtues and shortcomings, but more often than not, millennials are considered to be financially indisciplined.
+ &lt;/div&gt;
+ &lt;div class=&quot;byline&quot;&gt;
+  &lt;a class=&quot;ga-click&quot; data-ga-action=&quot;authorname&quot; data-ga-category=&quot;topic-millennials-playlist-latest-feature&quot; data-ga-label=&quot;playlist.1&quot; href=&quot;/author/portia-antonia-alexis&quot;&gt;
+   &lt;span class=&quot;name&quot;&gt;
+    Portia Antonia Alexis
+   &lt;/span&gt;
+  &lt;/a&gt;
+  &lt;span class=&quot;spacer&quot;&gt;
+   |
+  &lt;/span&gt;
+  &lt;span class=&quot;readtime&quot;&gt;
+   11 min read
+  &lt;/span&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<h2 id="extracting-the-headline">Extracting the headline</h2>
+<p>In our previous line, we notice the title is inside an <em>$&lt;$a$&gt;$</em> tag, which is inside an <em>$&lt;$h3$&gt;$</em> element</p>
+<pre><code>&lt;h3&gt;
+    &lt;a href=&quot;/article/348092&quot;&gt;7 Interesting Financial Facts About Millennials &lt;/a&gt; 
+&lt;/h3&gt;
+</code></pre>
+<p>We can access the HTML elements, making reference to the object containing the block code, in this case, we called <em>article</em></p>
+<pre><code class="language-python">for article in soup.find_all('div',class_='block'):headline= article.h3.a.text
+print(headline)
+</code></pre>
+<pre><code>---------------------------------------------------------------------------
+
+AttributeError                            Traceback (most recent call last)
+
+&lt;ipython-input-13-85011acff508&gt; in &lt;module&gt;
+----&gt; 1 for article in soup.find_all('div',class_='block'):headline= article.h3.a.text
+      2 print(headline)
+
+
+AttributeError: 'NoneType' object has no attribute 'a'
+</code></pre>
+<h2 id="extracting-the-summary">Extracting the summary</h2>
+<p>The same way, we can extrac the summary, contained inside a <em>$&lt;$div$&gt;$</em> element with class name <em>deck</em></p>
+<pre><code class="language-python">sumary = article.find('div',class_='deck' ).text
+print(sumary)
+</code></pre>
+<h2 id="extracting-the-url">Extracting the URL</h2>
+<p>The URL is an attribute <em>href</em> inside the title tag, we can access attributes by specifying it on brackets next to the element where it is contained as follows:</p>
+<pre><code class="language-python">link =  article.h3.a['href']
+link = f'https://www.entrepreneur.com{link}'
+print(link)
+</code></pre>
+<h1 id="center-font-size30-extract--all-the-articles-in-a-page-save-it-on-a-csv--fontcenter"><center> <font size="30"> Extract  all the articles in a page, save it on a CSV  </font></center></h1>
+<h2 id="the-find_all-method">The find_all* method</h2>
+<p>We want to get all articles, we’ll need to use the <em>find_all()</em> method to extract all the tags with all the blocks containing an article.</p>
+<h2 id="we-need-exceptions">We need exceptions</h2>
+<p>Sometimes, a block might have a missing element, url, or a description. So we will use exceptions to pass when something goes wrong.</p>
+<p>We will save every article inside a CSV file. Here is the full code of this example.</p>
+<pre><code class="language-python">from bs4 import BeautifulSoup
+import requests
+import csv
+
+source = requests.get('https://www.entrepreneur.com/topic/millennials').text
+domain= 'https://www.entrepreneur.com/'
+
+soup = BeautifulSoup(source, 'lxml') 
+
+with open('cms_file.csv','w') as csv_file:
+    csv_writer=csv.writer(csv_file)
+    csv_writer.writerow(['headline','summary','link'])
+
+    for article in soup.find_all('div',class_='block'):
+        try:
+            headline= article.h3.a.text
+            #print(headline)
+
+            sumary = article.find('div',class_='deck' ).text
+            #print(sumary)
+
+            link =  article.h3.a['href']
+            link = f'https://www.entrepreneur.com{link}'
+            #print(link)
+
+        except Exception as e:
+            pass    
+
+
+        csv_writer.writerow([headline,sumary,link ])
+
+
+
+</code></pre>
+<h1 id="the-resulting-csv-file">The resulting CSV file</h1>
+<p><img src="CSV_FILE.png" alt="CSV_FILE"></p>
+<h2 id="now-try-it-on-financial-websites-or-investment-websites-and-use-pandas-to-get-the-most-of-your-data">Now, try it on financial websites or investment websites, and use pandas to get the most of your data!</h2>
+
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/data-science/">Data Science</a>
+  
+  <a class="badge badge-light" href="/tag/deep-learning/">Deep Learning</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://miguelhisojo.github.io/project/web-scraping/&amp;text=WEB%20SCRAPING" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://miguelhisojo.github.io/project/web-scraping/&amp;t=WEB%20SCRAPING" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://miguelhisojo.github.io/project/web-scraping/&amp;title=WEB%20SCRAPING" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+    
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>Related</h3>
+    <ul>
+      
+      <li><a href="/project/inside-a-wireless-transmission/">Inside a Wireless Transmission</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.66c553246b0f279a03be6e5597f72b52.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Published with
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic Website Builder</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
