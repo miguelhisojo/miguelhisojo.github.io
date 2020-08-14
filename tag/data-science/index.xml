@@ -33,6 +33,10 @@
 
 
   
+
+
+
+  
   
 
 
@@ -144,6 +148,10 @@ pl.title(&#39;Amplitude of carrier vs time&#39;)
 
 
   
+
+
+
+  
   
 
 
@@ -206,6 +214,10 @@ pl.title(&#39;Original VCO output versus time&#39;)
 
 
   
+
+
+
+  
   
 
 
@@ -245,6 +257,10 @@ pl.title(&#39;Spectrum&#39;)
 
 
 
+
+
+
+  
 
 
 
@@ -323,6 +339,10 @@ print(int(Fs*N_pbits/Fbit))
 
 
   
+
+
+
+  
   
 
 
@@ -356,6 +376,10 @@ pl.ylabel(&#39;Amplitude (dB)&#39;)
 
 
 
+
+
+
+  
 
 
 
@@ -395,6 +419,10 @@ pl.ylabel(&#39;Amplitude (dB)&#39;)
 
 
 
+
+
+
+  
 
 
 
@@ -475,6 +503,10 @@ pl.title(&#39;Original VCO output vs. time&#39;)
 
 
   
+
+
+
+  
   
 
 
@@ -528,6 +560,8 @@ pl.title(&#39;Filter signal and unfiltered signal vs. time&#39;)
 
 
 
+
+
 &lt;figure id=&#34;figure-filter-signal-and-unfiltered-signal-vs-time&#34;&gt;
 
 
@@ -555,6 +589,10 @@ pl.title(&#39;Spectrum&#39;)
 
 
 
+
+
+
+  
 
 
 
@@ -616,6 +654,10 @@ pl.plot(sampled_signal)
 
 
 
+
+
+
+  
 
 
 
