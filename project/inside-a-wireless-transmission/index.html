@@ -239,8 +239,8 @@
   
 
   <link rel="manifest" href="/index.webmanifest">
-  <link rel="icon" type="image/png" href="/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_32x32_fill_lanczos_center_2.png">
-  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_192x192_fill_lanczos_center_2.png">
+  <link rel="icon" type="image/png" href="/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_192x192_fill_lanczos_center_2.png">
 
   <link rel="canonical" href="https://miguelhisojo.github.io/project/inside-a-wireless-transmission/">
 
@@ -308,7 +308,7 @@
     "name": "MIGUEL ANGEL HISOJO",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://miguelhisojo.github.io/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_192x192_fill_lanczos_center_2.png"
+      "url": "https://miguelhisojo.github.io/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_192x192_fill_lanczos_center_2.png"
     }
   },
   "description": "Wireless speakers, internet signals, headset, etc., are part of our daily life. Nevertheless, understanding how it works is essential to create new gadgets. This post will focus on FSK modulation. A digital modulation technique, present in our daily lives."
@@ -631,7 +631,7 @@
       <p><img src="featured.png" alt="wireless.png"></p>
 <h1 id="how-your-wireless-speaker-works">How your wireless speaker works?</h1>
 <h2 id="an-fsk-simulation">An FSK simulation</h2>
-<p>Mobile phones, internet access, and to listening music on the radio are normal activities for most of us. When any of those activities take place, we impose a data signal wave over a carrier signal wave, generally of higher frequency. This process is called modulation.</p>
+<p>Mobile phones, internet access, and listening the radio, those are normal activities for most of us. When any of those activities take place, we impose a data signal wave over a carrier signal wave, generally of higher frequency. This process is called modulation.</p>
 <p>Digital Modulation provides more information capacity, high data security, quicker system availability with great quality communication.</p>
 <p>Frequency Shift Keying (FSK) is one of the most common modulation techniques. FSK modulates a signal so it can be transmitted wirelessly. Bluetooth, uses Gaussian FSK modulation, a slightly different version of FSK. This notebook aims to provide an overview of how data transmission works over FSK.</p>
 <h1 id="system-description">System description.</h1>
@@ -750,7 +750,7 @@ pl.ylabel('Amplitude (V)')
 pl.title('Amplitude of carrier vs time')
 
 </code></pre>
-<pre><code>12800
+<pre><code>    12800
 </code></pre>
 
 
@@ -800,7 +800,10 @@ frequencies. Shifts are usually in the range of 50 to 1000 Hertz. The nominal ce
 frequency is halfway between the mark and space frequencies.</p>
 <p>Frequency Shift Property of the Fourier Transform:</p>
 <p>$$
-\mathscr F [x(t) \cos (2\pi f_c t)] = \frac{1}{2} X (f-f_c) + \frac{1}{2} X (f+f_c)
+\begin{aligned}
+\mathscr F \left[ x(t) \cos (2\pi f_c t) \right] =  \frac{1}{2} X (f-f_c) + \\<br>
+\frac{1}{2} X (f+f_c)
+\end{aligned}
 $$</p>
 <pre><code class="language-python">#visualize data in time and frequency domain
 def visualize_data(y):
@@ -1072,11 +1075,16 @@ pl.ylabel('Amplitude (dB)')
 <p>Our receiver will take concepts from <em>analog FM</em>, which can be demodulated by converting the <strong>frequency changes to amplitude changes.</strong>
 Typically, FSK demodulation utilizes an analog differentiator in order to separate the data signal from the carrier frequency, followed by an envelope detector. This procedure is simple and low-power consuming.</p>
 <p>$$
-\frac{dy}{dt} = -A 2\pi \left ( f + m(t) + t * \frac{d m(t)}{dt} \right) \sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+\begin{aligned}
+\frac{dy}{dt} = -A 2\pi \left ( f + m(t) + t * \frac{d m(t)}{dt} \right) \\<br>
+\sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+\end{aligned}
 $$</p>
 <p>Combining the amplitudes in one term and taking into account that the term $\frac{d m(t)}{dt} = 0$ due to the constant phase change we have:</p>
 <p>$$
-\frac{dy}{dt} = A 2\pi \left ( f + m(t)  \right) \sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+\begin{split}
+\scriptstyle \frac{dy}{dt} =  A\ 2 \pi \left ( \ f + m(t) \ \right ) \cdot \  \sin (2 \pi (\ fc + m(t) \ )\  * \ t ) +  \frac{d n(t)}{dt}
+\end{split}
 $$</p>
 <p>In our simulation, we can ignore the phase shift, since it is constant. Nevertheless, in real life, a clock recovery or bit synchronization scheme must be applied. The differentiator is simple and is just a discrete differentiation function, it can be implemented as:</p>
 <pre><code class="language-python">y_diff = np.diff(y,1)
@@ -1086,7 +1094,7 @@ print(y)
       0.64900518]
 </code></pre>
 <p>The envelope detector separates the high-frequency carrier from the low-frequency digital data modulated onto the amplitude, this is done by using a Hilbert transform.
-After the envelope detection, the signal is low-pass filtered using a 100 tap FIR filter with a cutoff frequency of $2*bitrate$.</p>
+After the envelope detection, the signal is low-pass filtered using a 100 tap FIR filter with a cutoff frequency of $2 * bitrate$.</p>
 <pre><code class="language-python">######################################################
 # Envelope detector and low-pass filter
 ######################################################
@@ -1393,32 +1401,6 @@ Nevertheless, FSK has finite data rate and consumes more bandwidth can be overco
       <li>
         <a href="https://www.linkedin.com/shareArticle?url=https://miguelhisojo.github.io/project/inside-a-wireless-transmission/&amp;title=Inside%20a%20Wireless%20Transmission" target="_blank" rel="noopener" class="share-btn-linkedin">
           <i class="fab fa-linkedin-in"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="whatsapp://send?text=Inside%20a%20Wireless%20Transmission%20https://miguelhisojo.github.io/project/inside-a-wireless-transmission/" target="_blank" rel="noopener" class="share-btn-whatsapp">
-          <i class="fab fa-whatsapp"></i>
-        </a>
-      </li>
-    
-      
-      
-      
-        
-      
-      
-      
-      <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://miguelhisojo.github.io/project/inside-a-wireless-transmission/&amp;title=Inside%20a%20Wireless%20Transmission" target="_blank" rel="noopener" class="share-btn-weibo">
-          <i class="fab fa-weibo"></i>
         </a>
       </li>
     

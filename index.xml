@@ -7,7 +7,7 @@
     <description>MIGUEL ANGEL HISOJO</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator><language>en-us</language><lastBuildDate>Wed, 12 Aug 2020 16:26:58 +0200</lastBuildDate>
     <image>
-      <url>https://miguelhisojo.github.io/images/icon_hu7aa7cabf48a670437f832f5d74b422e7_29465_512x512_fill_lanczos_center_2.png</url>
+      <url>https://miguelhisojo.github.io/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_512x512_fill_lanczos_center_2.png</url>
       <title>MIGUEL ANGEL HISOJO</title>
       <link>https://miguelhisojo.github.io/</link>
     </image>
@@ -20,7 +20,7 @@
       <description>&lt;p&gt;&lt;img src=&#34;featured.png&#34; alt=&#34;wireless.png&#34;&gt;&lt;/p&gt;
 &lt;h1 id=&#34;how-your-wireless-speaker-works&#34;&gt;How your wireless speaker works?&lt;/h1&gt;
 &lt;h2 id=&#34;an-fsk-simulation&#34;&gt;An FSK simulation&lt;/h2&gt;
-&lt;p&gt;Mobile phones, internet access, and to listening music on the radio are normal activities for most of us. When any of those activities take place, we impose a data signal wave over a carrier signal wave, generally of higher frequency. This process is called modulation.&lt;/p&gt;
+&lt;p&gt;Mobile phones, internet access, and listening the radio, those are normal activities for most of us. When any of those activities take place, we impose a data signal wave over a carrier signal wave, generally of higher frequency. This process is called modulation.&lt;/p&gt;
 &lt;p&gt;Digital Modulation provides more information capacity, high data security, quicker system availability with great quality communication.&lt;/p&gt;
 &lt;p&gt;Frequency Shift Keying (FSK) is one of the most common modulation techniques. FSK modulates a signal so it can be transmitted wirelessly. Bluetooth, uses Gaussian FSK modulation, a slightly different version of FSK. This notebook aims to provide an overview of how data transmission works over FSK.&lt;/p&gt;
 &lt;h1 id=&#34;system-description&#34;&gt;System description.&lt;/h1&gt;
@@ -139,7 +139,7 @@ pl.ylabel(&#39;Amplitude (V)&#39;)
 pl.title(&#39;Amplitude of carrier vs time&#39;)
 
 &lt;/code&gt;&lt;/pre&gt;
-&lt;pre&gt;&lt;code&gt;12800
+&lt;pre&gt;&lt;code&gt;    12800
 &lt;/code&gt;&lt;/pre&gt;
 
 
@@ -189,7 +189,10 @@ frequencies. Shifts are usually in the range of 50 to 1000 Hertz. The nominal ce
 frequency is halfway between the mark and space frequencies.&lt;/p&gt;
 &lt;p&gt;Frequency Shift Property of the Fourier Transform:&lt;/p&gt;
 &lt;p&gt;$$
-\mathscr F [x(t) \cos (2\pi f_c t)] = \frac{1}{2} X (f-f_c) + \frac{1}{2} X (f+f_c)
+\begin{aligned}
+\mathscr F \left[ x(t) \cos (2\pi f_c t) \right] =  \frac{1}{2} X (f-f_c) + \\&lt;br&gt;
+\frac{1}{2} X (f+f_c)
+\end{aligned}
 $$&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;#visualize data in time and frequency domain
 def visualize_data(y):
@@ -461,11 +464,16 @@ pl.ylabel(&#39;Amplitude (dB)&#39;)
 &lt;p&gt;Our receiver will take concepts from &lt;em&gt;analog FM&lt;/em&gt;, which can be demodulated by converting the &lt;strong&gt;frequency changes to amplitude changes.&lt;/strong&gt;
 Typically, FSK demodulation utilizes an analog differentiator in order to separate the data signal from the carrier frequency, followed by an envelope detector. This procedure is simple and low-power consuming.&lt;/p&gt;
 &lt;p&gt;$$
-\frac{dy}{dt} = -A 2\pi \left ( f + m(t) + t * \frac{d m(t)}{dt} \right) \sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+\begin{aligned}
+\frac{dy}{dt} = -A 2\pi \left ( f + m(t) + t * \frac{d m(t)}{dt} \right) \\&lt;br&gt;
+\sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+\end{aligned}
 $$&lt;/p&gt;
 &lt;p&gt;Combining the amplitudes in one term and taking into account that the term $\frac{d m(t)}{dt} = 0$ due to the constant phase change we have:&lt;/p&gt;
 &lt;p&gt;$$
-\frac{dy}{dt} = A 2\pi \left ( f + m(t)  \right) \sin (2 \pi (fc + m(t)) * t )+ \frac{d n(t)}{dt}
+\begin{split}
+\scriptstyle \frac{dy}{dt} =  A\ 2 \pi \left ( \ f + m(t) \ \right ) \cdot \  \sin (2 \pi (\ fc + m(t) \ )\  * \ t ) +  \frac{d n(t)}{dt}
+\end{split}
 $$&lt;/p&gt;
 &lt;p&gt;In our simulation, we can ignore the phase shift, since it is constant. Nevertheless, in real life, a clock recovery or bit synchronization scheme must be applied. The differentiator is simple and is just a discrete differentiation function, it can be implemented as:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;y_diff = np.diff(y,1)
@@ -475,7 +483,7 @@ print(y)
       0.64900518]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;The envelope detector separates the high-frequency carrier from the low-frequency digital data modulated onto the amplitude, this is done by using a Hilbert transform.
-After the envelope detection, the signal is low-pass filtered using a 100 tap FIR filter with a cutoff frequency of $2*bitrate$.&lt;/p&gt;
+After the envelope detection, the signal is low-pass filtered using a 100 tap FIR filter with a cutoff frequency of $2 * bitrate$.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;######################################################
 # Envelope detector and low-pass filter
 ######################################################
