@@ -1,0 +1,1308 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Source Themes Academic 4.8.0">
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Miguel Angel Hisojo">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="ML FashionTech Fashion industry. The fashion industry has benefited greatly from AI in the past decades. Helping costumers to choose the size, color, or style, based on their preferences, lifestyle, morphology, etc.">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://miguelhisojo.github.io/project/fashiontech/">
+
+  
+
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-1/css/all.min.css" integrity="sha256-4w9DunooKSr3MFXHXWyFER38WmPdm361bQS/2KUWZbU=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" integrity="sha256-SHMGCYmST46SoyGgo4YR/9AlK1vf3ff84Aq9yK4hdqM=" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.1.2/lazysizes.min.js" integrity="sha256-Md1qLToewPeKjfAHU1zyPwOutccPAm5tahnaw7Osw0A=" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/academic.css">
+
+  
+
+
+
+
+  
+<script>
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PQTTZ2P');
+</script>
+
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://miguelhisojo.github.io/project/fashiontech/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="MIGUEL ANGEL HISOJO">
+  <meta property="og:url" content="https://miguelhisojo.github.io/project/fashiontech/">
+  <meta property="og:title" content="FashionTech | MIGUEL ANGEL HISOJO">
+  <meta property="og:description" content="ML FashionTech Fashion industry. The fashion industry has benefited greatly from AI in the past decades. Helping costumers to choose the size, color, or style, based on their preferences, lifestyle, morphology, etc."><meta property="og:image" content="https://miguelhisojo.github.io/project/fashiontech/featured.png">
+  <meta property="twitter:image" content="https://miguelhisojo.github.io/project/fashiontech/featured.png"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-08-26T20:26:10&#43;02:00">
+    
+    <meta property="article:modified_time" content="2020-08-26T20:26:10&#43;02:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://miguelhisojo.github.io/project/fashiontech/"
+  },
+  "headline": "FashionTech",
+  
+  "image": [
+    "https://miguelhisojo.github.io/project/fashiontech/featured.png"
+  ],
+  
+  "datePublished": "2020-08-26T20:26:10+02:00",
+  "dateModified": "2020-08-26T20:26:10+02:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Miguel Angel Hisojo"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "MIGUEL ANGEL HISOJO",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://miguelhisojo.github.io/images/icon_hu777885f414bcc18ff5c79c4bbb0d0e17_655_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "ML FashionTech Fashion industry. The fashion industry has benefited greatly from AI in the past decades. Helping costumers to choose the size, color, or style, based on their preferences, lifestyle, morphology, etc."
+}
+</script>
+
+  
+
+  
+
+
+  
+  
+  
+  
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.js" integrity="sha256-5VhCqFam2Cn+yjw61zbBNrbHVJ6SRydPeKopYlngbiQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.1/cookieconsent.min.css" integrity="sha256-zQ0LblD/Af8vOppw18+2anxsuaz3pWYyVWi+bTvTH8Q=" crossorigin="anonymous">
+  
+  <script>
+  window.addEventListener("load", function(){
+    window.cookieconsent.initialise({
+      "palette": {
+        "popup": {
+          "background": "#2962ff",
+          "text": "#fff"
+        },
+        "button": {
+          "background": "#fff",
+          "text": "#2962ff"
+        }
+      },
+      "theme": "classic",
+      "content": {
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "link": "Learn more",
+        "href": "https://www.cookiesandyou.com"
+      }
+    })});
+  </script>
+
+
+
+  
+
+
+
+
+
+  <title>FashionTech | MIGUEL ANGEL HISOJO</title>
+
+</head>
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" >
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">MIGUEL ANGEL HISOJO</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">MIGUEL ANGEL HISOJO</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-center" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+        
+        
+        
+        
+        
+          
+          
+          
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Portfolio</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link js-theme-selector" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-palette" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>FashionTech</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Aug 26, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 720px;">
+  <div style="position: relative">
+    <img src="/project/fashiontech/featured_hu50e5c0109d64c2bde709e6251b6ed29f_790450_720x0_resize_lanczos_2.png" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <p><img src="featured.png" alt=""></p>
+<h1 id="ml-fashiontech">ML FashionTech</h1>
+<h2 id="fashion-industry">Fashion industry.</h2>
+<p>The fashion industry has benefited greatly from AI in the past decades. Helping costumers to choose the size, color, or style, based on their preferences, lifestyle, morphology, etc. In this Notebook, I will show the reader how to train a model, to recognize different clothing items. For this purpose, I will use the MINST public dataset from Zalando Research.</p>
+<h3 id="zalando-research">Zalando Research</h3>
+<p>Zalando is one of the biggest fashion sellers in Europe, with a large selection of clothing, accessories, and shoes online.</p>
+<p>Zalando research aims to ease many of the customer problems regarding sizing and type of clothing. They use machine learning and AI to automate these tasks for their customers.</p>
+<h2 id="the-mnist-dataset">The MNIST dataset</h2>
+<p><a href="https://research.zalando.com/welcome/mission/research-projects/fashion-mnist/">https://research.zalando.com/welcome/mission/research-projects/fashion-mnist/</a></p>
+<p>Mnist Fashion contains 60,000 images for training and 10,000 images to evaluate the precision of a trained model to classify clothes. All images have a dimension of 28 by 28px with 10 types of classes, where we can find coats, T-shirts, slippers, sandals, among others.</p>
+<pre><code class="language-python"># Import the libraries necessary for our simulation
+
+import tensorflow as tf
+from tensorflow import keras
+
+from datetime import datetime
+import numpy as np
+import matplotlib.pyplot as plt
+
+from PIL import Image
+import requests
+from io import BytesIO
+
+import os
+import cv2
+
+# print(tf.__version__)
+
+fashion_mnist = keras.datasets.fashion_mnist
+
+
+</code></pre>
+<h2 id="loading-and-preparing-the-training-dataset">Loading and preparing the training dataset</h2>
+<p>The fashion_mnist dataset is integrated in keras, we will declare categories for every different item on it.</p>
+<pre><code class="language-python">(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+class_names = ['T-shirt', 'Pants', 'Sweater', 'Dress', 'Jacket',
+               'flip-flops', 'Shirt', 'Sport shoes', 'Purse', 'Boots']
+
+</code></pre>
+<p>Now, let&rsquo;s take a look at the images, we must remember that every image has a $28px \times 28 px$ dimension, so we will scale the images to a range of $255 px$ and will take a look at one of them.</p>
+<pre><code class="language-python">plt.figure(figsize=(10,10))
+for i in range(50):
+    plt.subplot(5,10,i+1)
+    plt.xticks([])
+    plt.yticks([])
+    plt.grid(False)
+    plt.imshow(train_images[i], cmap=plt.cm.binary)
+    plt.xlabel(class_names[train_labels[i]])
+    plt.show()
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img src="./FashionTech_5_0.png" alt="png"></td>
+<td><img src="./FashionTech_5_1.png" alt="png"></td>
+<td><img src="./FashionTech_5_2.png" alt="png"></td>
+<td><img src="./FashionTech_5_3.png" alt="png"></td>
+<td><img src="./FashionTech_5_4.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_5.png" alt="png"></td>
+<td><img src="./FashionTech_5_6.png" alt="png"></td>
+<td><img src="./FashionTech_5_7.png" alt="png"></td>
+<td><img src="./FashionTech_5_8.png" alt="png"></td>
+<td><img src="./FashionTech_5_9.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_10.png" alt="png"></td>
+<td><img src="./FashionTech_5_11.png" alt="png"></td>
+<td><img src="./FashionTech_5_12.png" alt="png"></td>
+<td><img src="./FashionTech_5_13.png" alt="png"></td>
+<td><img src="./FashionTech_5_14.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_15.png" alt="png"></td>
+<td><img src="./FashionTech_5_16.png" alt="png"></td>
+<td><img src="./FashionTech_5_17.png" alt="png"></td>
+<td><img src="./FashionTech_5_18.png" alt="png"></td>
+<td><img src="./FashionTech_5_19.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_20.png" alt="png"></td>
+<td><img src="./FashionTech_5_21.png" alt="png"></td>
+<td><img src="./FashionTech_5_22.png" alt="png"></td>
+<td><img src="./FashionTech_5_23.png" alt="png"></td>
+<td><img src="./FashionTech_5_24.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_25.png" alt="png"></td>
+<td><img src="./FashionTech_5_26.png" alt="png"></td>
+<td><img src="./FashionTech_5_27.png" alt="png"></td>
+<td><img src="./FashionTech_5_28.png" alt="png"></td>
+<td><img src="./FashionTech_5_29.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_30.png" alt="png"></td>
+<td><img src="./FashionTech_5_31.png" alt="png"></td>
+<td><img src="./FashionTech_5_32.png" alt="png"></td>
+<td><img src="./FashionTech_5_33.png" alt="png"></td>
+<td><img src="./FashionTech_5_34.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_35.png" alt="png"></td>
+<td><img src="./FashionTech_5_36.png" alt="png"></td>
+<td><img src="./FashionTech_5_37.png" alt="png"></td>
+<td><img src="./FashionTech_5_38.png" alt="png"></td>
+<td><img src="./FashionTech_5_39.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_40.png" alt="png"></td>
+<td><img src="./FashionTech_5_41.png" alt="png"></td>
+<td><img src="./FashionTech_5_42.png" alt="png"></td>
+<td><img src="./FashionTech_5_43.png" alt="png"></td>
+<td><img src="./FashionTech_5_44.png" alt="png"></td>
+</tr>
+<tr>
+<td><img src="./FashionTech_5_45.png" alt="png"></td>
+<td><img src="./FashionTech_5_46.png" alt="png"></td>
+<td><img src="./FashionTech_5_47.png" alt="png"></td>
+<td><img src="./FashionTech_5_48.png" alt="png"></td>
+<td><img src="./FashionTech_5_49.png" alt="png"></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-python">train_images = train_images / 255
+test_images = test_images / 255
+
+plt.figure()
+plt.imshow(test_images[1000], cmap=plt.cm.binary)
+plt.colorbar()
+plt.grid(False)
+plt.show()
+</code></pre>
+<p><img src="./FashionTech_6_0.png" alt="png"></p>
+<h2 id="initializing-the-model-for-our-neural-network">Initializing the model for our neural network</h2>
+<p>We will use a simple sequential model, since our CNN will be a linear stack of layers. We will begin by instantiating the Sequential class from Keras.</p>
+<p>Our model must transform the image format from a two-dimensional array of $28 \times 28$ pixels to a one-dimensional array of $28 * 28 pixels = 784$ pixels. Keras will do this for us, trough <em>keras.layers.Flatten</em></p>
+<p>Lately, we want to tell our neural network that all layers are fully connected and that the output will be a Softmax layer with 10 nodes, the aim of this layer is to turn arbitrary real values into probabilities, a <strong>probability distribution</strong> defined by:</p>
+<p>$$
+s (x_i) = \frac{\exp^{x_i}}{\sum_{j=1}^{n} \exp^{x_j}}\quad \quad  \forall \ { {x_i} \dots {x_n} }
+$$</p>
+<p>where $s(x_i) \in [0,1]$.</p>
+<pre><code class="language-python">model = keras.Sequential([  keras.layers.Flatten(input_shape=(28,28)), keras.layers.Dense(150, activation=tf.nn.relu),
+ keras.layers.Dense(10, activation=tf.nn.softmax) ])
+</code></pre>
+<h1 id="image-recognition">Image recognition</h1>
+<p>Convolutional Neural Network (CNN), is a class of deep learning networks, originally designed for image analysis. They are made up of neurons that have learnable weights and biases. Each neuron receives some inputs, performs a dot product, and optionally follows it with a non-linearity. CNN&rsquo;s architectures make the explicit assumption that the inputs are images, which allows us to encode certain properties into the architecture.</p>
+<p>In general, Neural Networks utilize the gradient descent optimization algorithm, to reduce the cost function by finding the optimized value for weights.</p>
+<p>Before we can begin training, we need to configure the training process. We decide 3 key factors during the compilation step:</p>
+<h2 id="adam-optimization-algorithm">ADAM optimization algorithm.</h2>
+<p><img src="./adam-optimization.png" alt="adam-optimization.png"></p>
+<p>Adaptive Moment Optimization (ADAM), computes adaptive learning rates for each parameter. In addition to storing an exponentially decaying average of past squared gradients $v_t$ like RMSprop, Adam also keeps an exponentially decaying average of past gradients $m_t$, similar to momentum. Whereas momentum can be seen as a ball running down a slope, Adam behaves like a heavy ball with friction, which thus prefers flat minima in the error surface.</p>
+<p>$$
+m_t = \beta_1 m_{t-1} + (1-\beta_1 )g_t \<br>
+v_t = \beta_2 v_{t-1} + (1-\beta_2 )g_t^2
+$$</p>
+<p>$m_t$ and $v_t$ are estimates of the first moment (the mean) and the second moment (the non-centered variance) of the gradients respectively, hence the name of the method. We can observe that $m_t$ and $v_t$ are initialized as vectors of $0$'s, so they are biased towards zero, especially during the initial time steps, and especially when the decay rates are small.</p>
+<p>To correct the bias we can compute:</p>
+<p>$$
+\hat{m_t} = \frac{m_t}{ ( 1 - \beta_{1}^{t} ) }
+$$
+$$
+\hat{v_t} = \frac{v_t}{ ( 1 - \beta_{2}^{t} ) }
+$$</p>
+<p>So, the ADAM update rule can be written as:</p>
+<p>$$
+\theta_{t+1} = \theta_{t} - \frac{\eta }{\sqrt{\hat{v}_{t} } + \epsilon} \hat{m}_{t}
+$$</p>
+<ul>
+<li>
+<p>optimizer = ‘adam’: <em>Adaptive Moment Optimization</em>, combines the Momentum and Root Mean Square Propagation (RMSProp) methodology, calculating a linear combination between the gradient and the previous increment, and considers the recently appeared gradients in the updates to maintain different learning rates per variable.</p>
+</li>
+<li>
+<p>loss = <em>sparse_categorical_crossentropy</em>, used to measure the dissimilarity between the distribution of observed class labels and the predicted probabilities of class membership. The cross-entropy loss is defined by</p>
+</li>
+</ul>
+<p>$$
+L ( \theta ) =   \sum_{i=1}^{k} h_{i} \log \hat{ y_{i} }
+$$</p>
+<p>To do this in our python code, we can call the optimizer algorithm provided in Keras, we can do the next:</p>
+<pre><code class="language-python">## Compiling our model
+model.compile(optimizer = 'adam',loss = 'sparse_categorical_crossentropy', metrics=['accuracy'])
+</code></pre>
+<h2 id="model-sumary">model sumary</h2>
+<pre><code class="language-python">model.summary()
+</code></pre>
+<pre><code>_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+flatten_2 (Flatten)          (None, 784)               0         
+_________________________________________________________________
+dense_4 (Dense)              (None, 150)               117750    
+_________________________________________________________________
+dense_5 (Dense)              (None, 10)                1510      
+=================================================================
+Total params: 119,260
+Trainable params: 119,260
+Non-trainable params: 0
+_________________________________________________________________
+</code></pre>
+<h1 id="training">Training</h1>
+<pre><code class="language-python">model.fit(train_images, train_labels, epochs=10)
+</code></pre>
+<pre><code>Epoch 1/10
+60000/60000 [==============================] - 4s 63us/sample - loss: 0.4955 - acc: 0.8255
+Epoch 2/10
+60000/60000 [==============================] - 4s 61us/sample - loss: 0.3700 - acc: 0.8670
+Epoch 3/10
+60000/60000 [==============================] - 4s 60us/sample - loss: 0.3318 - acc: 0.8792
+Epoch 4/10
+60000/60000 [==============================] - 4s 60us/sample - loss: 0.3083 - acc: 0.8865
+Epoch 5/10
+60000/60000 [==============================] - 4s 61us/sample - loss: 0.2919 - acc: 0.8927
+Epoch 6/10
+60000/60000 [==============================] - 4s 60us/sample - loss: 0.2761 - acc: 0.8970
+Epoch 7/10
+60000/60000 [==============================] - 4s 60us/sample - loss: 0.2651 - acc: 0.9008
+Epoch 8/10
+60000/60000 [==============================] - 4s 60us/sample - loss: 0.2541 - acc: 0.9037
+Epoch 9/10
+60000/60000 [==============================] - 4s 60us/sample - loss: 0.2449 - acc: 0.9086
+Epoch 10/10
+60000/60000 [==============================] - 4s 61us/sample - loss: 0.2345 - acc: 0.9126
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x7fee3b7f72e8&gt;
+</code></pre>
+<pre><code class="language-python">test_loss, test_acc = model.evaluate(test_images, test_labels)
+print('Test accuracy:', test_acc)
+</code></pre>
+<pre><code>10000/10000 [==============================] - 0s 30us/sample - loss: 0.3375 - acc: 0.8813
+Test accuracy: 0.8813
+</code></pre>
+<p>We pass both the training images and the test images to our training model,
+as well as the number of epochs that for this case we have assigned 10.
+We can see that in each epochs the precision increases and at the end, we have a level of precision of $88.13 % $</p>
+<h2 id="saving-our-model">Saving our model</h2>
+<pre><code class="language-python">target_dir = './model/'
+if not os.path.exists(target_dir):
+ os.mkdir(target_dir)
+model.save('./model/model.h5')
+model.save_weights('./model/weights.h5')
+model_file = 'model_trained.h5'
+tf.keras.models.save_model(model, model_file)
+</code></pre>
+<p>It took less than 5 minutes to train the model, but there are cases where the training can take up to weeks,
+so it is a good practice to save our training so that when we want to have them we can instantiate them, instead of doing the training again.</p>
+<h2 id="predictions-does-it-work">Predictions&hellip; does it work??</h2>
+<p>Let&rsquo;s see the level of assertiveness that our already trained model gives us, with the test images that we have in our dataset.
+We store all the test images in our predictions array.</p>
+<p>Remember that we have 10,000 test images in a range from 0 to 9999, so we can change the position of our array.</p>
+<pre><code class="language-python">predictions = model.predict(test_images)
+img_predict = predictions[1000]
+
+
+print(img_predict)
+</code></pre>
+<pre><code>[2.1411373e-01 4.1174712e-06 5.1588207e-03 3.5855288e-03 3.2909706e-05
+ 2.2585571e-09 7.7704334e-01 2.8644736e-11 5.3676118e-05 7.9567017e-06]
+</code></pre>
+<p>We maximize the prediction to have the right value of the clothing we used in this test</p>
+<pre><code class="language-python">np.argmax(img_predict)
+</code></pre>
+<pre><code>6
+</code></pre>
+<p>Let&rsquo;s take a look at what item it is, inside our class_names array</p>
+<pre><code class="language-python">print(class_names)
+class_names[6]
+</code></pre>
+<pre><code>['T-shirt', 'Pants', 'Sweater', 'Dress', 'Jacket', 'flip-flops', 'Shirt', 'Sport shoes', 'Purse', 'Boots']
+
+
+
+
+
+'Shirt'
+</code></pre>
+<pre><code class="language-python">index = np.arange(len(class_names))
+plt.bar(index, img_predict)
+plt.ylabel('Confidence', fontsize=15)
+plt.xticks(index, class_names, fontsize=15, rotation=90)
+plt.title('Predictions')
+plt.show()
+</code></pre>
+<p><img src="./FashionTech_26_0.png" alt="png"></p>
+<h2 id="verify-the-result">Verify the result</h2>
+<p>The model indicates that the selected item corresponds to a Dress. We can check this by showing the image corresponding to that position, taking into account the one we have selected, for this case we are making the prediction in the position.</p>
+<pre><code class="language-python">plt.figure()
+plt.imshow(test_images[1000], cmap=plt.cm.binary)
+#plt.colorbar()
+plt.grid(False)
+plt.show()
+</code></pre>
+<p><img src="./FashionTech_29_0.png" alt="png"></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Keras, is a powerful library, containing built-in classes and functions, that simplifies the development of neural networks and other deep learning applications. Nevertheless, understanding the necessity of those functions, how they work, what operations they perform and the meaning of those operations is strictly necessary.</p>
+<p>We had seen the study of a set of images, provided by Zalando research, built a model to detect those images, trained it, and test it, achieving ~ 88% of probability of correct detection.</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://miguelhisojo.github.io/project/fashiontech/&amp;text=FashionTech" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://miguelhisojo.github.io/project/fashiontech/&amp;t=FashionTech" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=FashionTech&amp;body=https://miguelhisojo.github.io/project/fashiontech/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://miguelhisojo.github.io/project/fashiontech/&amp;title=FashionTech" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  
+    
+    
+    
+      
+    
+    
+    
+    <div class="media author-card content-widget-hr">
+      
+        
+        <img class="avatar mr-3 avatar-circle" src="/author/miguel-angel-hisojo/avatar_hu358fce96b46c0285460cb9679b9e346c_2059682_270x270_fill_lanczos_center_2.png" alt="Miguel Angel Hisojo">
+      
+
+      <div class="media-body">
+        <h5 class="card-title"><a href="https://miguelhisojo.github.io/">Miguel Angel Hisojo</a></h5>
+        <h6 class="card-subtitle">PhD in Applied Mathematics (Signal processing for Mobile communications)</h6>
+        <p class="card-text">My research interests include distributed robotics, mobile computing and programmable matter.</p>
+        <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/hisojomiguel/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/miguelhisojo" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+</ul>
+
+      </div>
+    </div>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js" integrity="sha256-eOgo0OtLL4cdq7RdwRUiGKLX9XsIJ7nGhWEKbohmVAQ=" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/r.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js" integrity="sha256-EErZamuLefUnbMBQbsEqu1USa+btR2oIlCpBJbyD4/g=" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    <script>const isSiteThemeDark = false;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/academic.min.66c553246b0f279a03be6e5597f72b52.js"></script>
+
+    
+
+
+
+
+
+
+  
+  
+  <div class="container">
+    <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    Powered by
+    <a href="https://sourcethemes.com/academic/" target="_blank" rel="noopener">Academic</a>
+    
+
+    
+    <span class="float-right" aria-hidden="true">
+      <a href="#" class="back-to-top">
+        <span class="button_icon">
+          <i class="fas fa-chevron-up fa-2x"></i>
+        </span>
+      </a>
+    </span>
+    
+  </p>
+</footer>
+
+  </div>
+  
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
